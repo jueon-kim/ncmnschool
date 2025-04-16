@@ -1,7 +1,6 @@
 package com.ncmn.school.member;
 
 
-import java.sql.Array;
 import java.util.*;
 
 public class MemoryMemberRepository implements MemberRepository {
@@ -9,8 +8,9 @@ public class MemoryMemberRepository implements MemberRepository {
     private static Map<String, Member> repository = new HashMap<>();
 
     @Override
-    public void save(Member member) {
+    public Member save(Member member) {
         repository.put(member.getName(), member);
+        return member;
     }
     @Override
     public Optional<Member> findByName(String name) {

@@ -37,9 +37,10 @@ public class MemberApp {
 
         // 전체 회원 조회 및 출력
         List<Member> allMembers = memberService.findAll();
-        System.out.println("전체 회원 목록:" + foundMember);
+        System.out.println("전체 회원 목록:" + allMembers.size());
         for (Member member : allMembers) {
             System.out.println(member);
+            System.out.println(allMembers);
         }
     }
 }

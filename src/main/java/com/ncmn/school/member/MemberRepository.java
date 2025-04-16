@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface MemberRepository {
-    void save(Member member); // 회원 저장 (Create & Update)
+    Member save(Member member); // 회원 저장 (Create & Update)
 
     Optional<Member> findByName(String name); // 이름으로 회원 조회 (Read)
     Optional<Member> findByPhone(Number phone); // 전화번호로 회원 조회 (Read)
