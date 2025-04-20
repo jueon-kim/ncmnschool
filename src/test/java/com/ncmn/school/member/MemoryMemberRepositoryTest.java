@@ -21,15 +21,7 @@ class MemoryMemberRepositoryTest {
     @Test
     void save() {
         //give
-        Member member = new Member(
-                "주언",
-                "010-1234-5678",
-                "jueon@test.email",
-                "2000-01-01",
-                "서울시 강남구",
-                "서울교회",
-                "엔지니어",
-                LocalDateTime.now()
+        Member member = Member.createMember(
         );
         member.setName("주언");
 

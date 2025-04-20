@@ -12,16 +12,10 @@ public class Member {
     private String job;
     private LocalDateTime timestamp;
 
-    public Member(String name, String phone, String email, String birthday, String address, String church, String job, LocalDateTime timestamp) {
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.birthday = birthday;
-        this.address = address;
-        this.church = church;
-        this.job = job;
-        this.timestamp = timestamp;
+    public static Member createMember() {
+        return new Member();
     }
+
     public String getName() {
         return name;
     }
@@ -84,5 +78,19 @@ public class Member {
 
     public void setTimestamp(LocalDateTime timestamp) {
         this.timestamp = timestamp;
+    }
+
+    @Override
+    public String toString() {
+        return "Member{" +
+                "name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", birthday='" + birthday + '\'' +
+                ", address='" + address + '\'' +
+                ", church='" + church + '\'' +
+                ", job='" + job + '\'' +
+                ", timestamp=" + timestamp +
+                '}';
     }
 }

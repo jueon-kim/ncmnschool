@@ -1,46 +1,32 @@
 package com.ncmn.school.member;
 
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class MemberApp {
     public static void main(String[] args) {
-        MemberService memberService = new MemberServiceImpl();
-        Member member1 = new Member(
-                "kimjueon",
-                "12222",
-                "test@email",
-                "1999-01-19",
-                "서울 관악구",
-                "대덕교회",
-                "개발자",
-                LocalDateTime.now()
-        );
-        Member member2 = new Member(
-                "parkjunho",
-                "13333",
-                "example@email",
-                "2000-02-15",
-                "서울 송파구",
-                "은혜교회",
-                "디자이너",
-                LocalDateTime.now()
-        );
+        // H2 데이터베이스 연결 설정
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName("org.h2.Driver");
+        dataSource.setUrl("jdbc:h2:tcp://localhost/~/test"); // H2 DB URL
+        dataSource.setUsername("sa");
+        dataSource.setPassword("password");
 
-        // 회원 저장
-        memberService.join(member1);
-        memberService.join(member2);
+        // JdbcMemberRepository 생성
+        MemberRepository memberRepository = new JdbcMemberRepository(dataSource);
 
-        // 특정 회원 조회 (findbyName)
-        Member foundMember = memberService.findbyName("kimjueon").get();
-        System.out.println("조회된 회원: " + foundMember);
 
-        // 전체 회원 조회 및 출력
-        List<Member> allMembers = memberService.findAll();
-        System.out.println("전체 회원 목록:" + allMembers.size());
-        for (Member member : allMembers) {
-            System.out.println(member);
-            System.out.println(allMembers);
-        }
+        Member newMember = Member.createMember();
+        newMember.setName("kimjueon");
+        newMember.setPhone("010-1234-5678");
+        newMember.setEmail("kimjueon@example.com");
+        newMember.setBirthday("1990-01-01");
+        newMember.setAddress("서울");
+        newMember.setChurch("교회");
+        newMember.setJob("개발자");
+
+        System.out.println(newMember);
     }
 }
