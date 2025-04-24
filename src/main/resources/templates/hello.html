@@ -8,6 +8,9 @@
 <h1 th:inline="text">Hello <span th:remove="tag" sec:authentication="name">thymeleaf</span>!</h1>
 <form th:action="@{/logout}" method="post">
     <input type="submit" value="Sign Out"/>
+
 </form>
+
+<a th:href="@{/admin/members}">회원 목록</a>
 </body>
 </html>
